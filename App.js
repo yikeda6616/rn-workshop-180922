@@ -1,12 +1,27 @@
 import React from 'react';
 import { StyleSheet, Text, View, Image, TouchableOpacity } from 'react-native';
 
+const options = [
+  require('./assets/daikichi.png'),
+  require('./assets/chukichi.png'),
+  require('./assets/shokichi.png')
+];
+
 export default class App extends React.Component {
+  state = {
+    image: null
+  };
+
   handleOmikuji = () => {
-    alert('daikichi!');
+    const index = Math.floor(Math.random() * options.length);
+    this.setState({
+      image: options[index]
+    });
   };
 
   render() {
+    const { image } = this.state;
+
     return (
       <View style={styles.container}>
         <Image
@@ -15,11 +30,7 @@ export default class App extends React.Component {
           resizeMode='contain'
         />
         <Text style={styles.text}>Today's Fortune?</Text>
-        <Image
-          source={require('./assets/daikichi.png')}
-          style={styles.resultImage}
-          resizeMode='contain'
-        />
+        <Image source={image} style={styles.resultImage} resizeMode='contain' />
         <TouchableOpacity
           style={styles.buttonContainer}
           onPress={this.handleOmikuji}
@@ -36,7 +47,8 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#fff',
     alignItems: 'center',
-    justifyContent: 'center'
+    flexDirection: 'column',
+    justifyContent: 'space-around'
   },
   image: {
     width: 200,
