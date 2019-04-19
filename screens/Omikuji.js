@@ -37,6 +37,7 @@ export default class Omikuji extends React.Component {
       image: options[index]
     });
   };
+
   render() {
     const image = this.state;
 
@@ -48,7 +49,11 @@ export default class Omikuji extends React.Component {
           resizeMode='contain'
         />
         <Text style={styles.text}>Today's Fortune?</Text>
-        <Image source={image} style={styles.resultImage} resizeMode='contain' />
+        <Image
+          source={image.image}
+          style={styles.resultImage}
+          resizeMode='contain'
+        />
         <TouchableOpacity
           style={styles.buttonContainer}
           onPress={this.handleOmikuji}
