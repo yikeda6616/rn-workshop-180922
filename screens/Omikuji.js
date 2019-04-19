@@ -15,24 +15,34 @@ const options = [
 ];
 
 export default class Omikuji extends React.Component {
+  results = [];
+
+  state = {
+    image: null
+  };
+
   static navigationOptions = ({ navigation }) => {
     return {
       title: 'Fortune Draw',
       headerRight: (
         <Button
-          onPress={() => navigation.navigate('Result')}
+          onPress={() =>
+            navigation.navigate('Result', navigation.getParam('results'))
+          }
           title='Results'
           color='black'
         />
       )
     };
   };
-  state = {
-    image: null
-  };
 
   handleOmikuji = () => {
     const index = Math.floor(Math.random() * options.length);
+    this.results.push({
+      id: this.results.length,
+      result: index
+    });
+    this.props.navigation.setParams({ results: this.results });
     this.setState({
       image: options[index]
     });
