@@ -7,12 +7,7 @@ import {
   TouchableOpacity,
   Button
 } from 'react-native';
-
-const options = [
-  require('../assets/daikichi.png'),
-  require('../assets/chukichi.png'),
-  require('../assets/shokichi.png')
-];
+import { IMAGE_OPTIONS } from '../constants';
 
 export default class Omikuji extends React.Component {
   results = [];
@@ -37,14 +32,14 @@ export default class Omikuji extends React.Component {
   };
 
   handleOmikuji = () => {
-    const index = Math.floor(Math.random() * options.length);
+    const index = Math.floor(Math.random() * IMAGE_OPTIONS.length);
     this.results.push({
       id: this.results.length,
       result: index
     });
     this.props.navigation.setParams({ results: this.results });
     this.setState({
-      image: options[index]
+      image: IMAGE_OPTIONS[index]
     });
   };
 
