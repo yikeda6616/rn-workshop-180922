@@ -8,10 +8,9 @@ import {
   Button
 } from 'react-native';
 import { IMAGE_OPTIONS } from '../constants';
+import { postResult } from '../api';
 
 export default class Omikuji extends React.Component {
-  results = [];
-
   state = {
     image: null
   };
@@ -33,11 +32,7 @@ export default class Omikuji extends React.Component {
 
   handleOmikuji = () => {
     const index = Math.floor(Math.random() * IMAGE_OPTIONS.length);
-    this.results.push({
-      id: this.results.length,
-      result: index
-    });
-    this.props.navigation.setParams({ results: this.results });
+    postResult(index, 'yasu');
     this.setState({
       image: IMAGE_OPTIONS[index]
     });
