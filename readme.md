@@ -21,3 +21,9 @@ $ expo init my-project
 $ cd my-project
 $ yarn start (or expo start)
 ```
+
+### react-navigation v3
+
+[App Containers update](https://reactnavigation.org/docs/en/app-containers.html#docsNav)
+
+> Note: In v2 and earlier, the containers in React Navigation are automatically provided by the `create\*Navigator` functions. As of v3, you are required to use the container directly. In v3 we also renamed `createNavigationContainer` to `createAppContainer`.
